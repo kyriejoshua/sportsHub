@@ -6,7 +6,7 @@
 * react-router v4.3.1
 
 ### Something
-* 本意是作为 react-router 库的解读，后来顺带做了一个简易的打卡的 app, 以日历方式呈现。基于 react-big-calendar, 数据保存在本地。
+* 本意是作为 react-router 库的解读，后来顺带做了一个简易的打卡的 app 并独立了出来, 以日历方式呈现。基于 react-big-calendar, 数据保存在本地。
 * UI 库使用了 [wiredelements](https://github.com/wiredjs/wired-elements) 和 [sweetalert](https://sweetalert.js.org/docs/).
 * 支持打卡，编辑内容。`shift + enter` 提交。
 
@@ -14,7 +14,8 @@
 * 一个腹肌撕裂者的教程和内容，放在独立的面板内，显示计划锻炼内容。
     * 高抬腿 30s, 斜腹肌 30, 腿间距 30，平躺高抬腿，左右互搏，瓦坎达 forever, 摸脚脖，踩单车，斜腹肌交叉，V 字体型锻炼，平躺屈伸等。
     * - [ ] 左侧悬浮的导航侧边栏，右边一面竖向显示数据，右边一面显示锻炼内容，一面显示月历。
-    * - [ ] 拆分项目，独立的项目 sportsHub. style: [baseweb](https://baseweb.design/components/select/)
+    * - [x] 拆分项目，独立的项目 sportsHub.
+    * - [ ] 新的整体 UI style: [baseweb](https://baseweb.design/components/select/)
 * 由于无法同时监听 cmd + enter, 所以目前用 shift + enter 替代。
 * 缺少直接写入文件的支持。用 node 实现。
 
