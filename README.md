@@ -15,7 +15,7 @@
     * 高抬腿 30s, 斜腹肌 30, 腿间距 30，平躺高抬腿，左右互搏，瓦坎达 forever, 摸脚脖，踩单车，斜腹肌交叉，V 字体型锻炼，平躺屈伸等。
     * - [ ] 左侧悬浮的导航侧边栏，右边一面竖向显示数据，右边一面显示锻炼内容，一面显示月历。
     * - [x] 拆分项目，独立的项目 sportsHub.
-    * - [ ] 新的整体 UI style: [baseweb](https://baseweb.design/components/select/)
+    * - [ ] 新的整体 UI style: [baseweb](https://baseweb.design/components/select/) 不好用，只借鉴，不引入。
 * 由于无法同时监听 cmd + enter, 所以目前用 shift + enter 替代。
 * 缺少直接写入文件的支持。用 node 实现。
 
