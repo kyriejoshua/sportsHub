@@ -296,5 +296,11 @@ export default {
     "allDay": false,
     "start": "2019-06-09 18:53",
     "end": "2019-06-09 18:53"
+  }, {
+    "id": 8,
+    "title": "Sports: 240",
+    "allDay": false,
+    "start": "2019-06-11 22:15",
+    "end": "2019-06-11 22:15"
   }]
 }

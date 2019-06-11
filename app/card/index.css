@@ -1,0 +1,48 @@
+.card-container {
+}
+
+.card-container .base-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: auto;
+  margin-bottom: 25px;
+  margin-left: 25px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 1px solid hsla(0, 0%, 0%, 0.12);
+}
+
+.card-container .base-card .card-header-img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.card-container .base-card .card-section {
+  padding: 24px 20px;
+}
+
+.card-container .base-card .card-section-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.card-container .base-card .card-section-desc {
+  font-size: 14px;
+}
+
+.cardlists .cardlist {
+
+}
+
+.cardlists .cardlist .cardlist-title {
+  text-align: center;
+}
+
+.cardlists .cardlist .cardlist-content {
+  padding-top: 15px;
+  border-top: 1px solid #e7e7e7;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 20px;
+}

@@ -2,14 +2,15 @@
 * @Author: kyriejoshua
 * @Date:   2019-06-05 17:23:00
 * @Last Modified by:   kyriejoshua
-* @Last Modified time: 2019-06-05 17:54:37
+* @Last Modified time: 2019-06-10 20:45:12
 */
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import { WiredIconButton } from 'wired-elements'
 import { Menu } from "baseui/menu"
-import Home from './home';
-// import Stat from './stat';
+import Home from './home'
+import CardList from './card'
+// import Stat from './stat'
 
 import './index.css'
 
@@ -19,6 +20,7 @@ export default class Main extends PureComponent {
     // 浏览器地址变化，但页面视图不会变化
     window.history.replaceState({page: 'home'},  'home', '/home')
   }
+
   render() {
     return <div className="container">
       <div className="menu">
@@ -29,6 +31,9 @@ export default class Main extends PureComponent {
         {/*<div className="menu-item">
           <Link to='/stat'>Stat</Link>
         </div>*/}
+      </div>
+      <div className="content">
+        <CardList />
       </div>
     </div>
   }
