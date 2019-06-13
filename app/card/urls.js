@@ -21,5 +21,6 @@ export default [
   'https://images.unsplash.com/photo-1496701759159-52494184dadb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1469155472021-fb3489e556fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1519646034307-936d8aeb8195?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1531244971949-804f48d20516?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+  'https://images.unsplash.com/photo-1531244971949-804f48d20516?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1497635703294-1c57b2ae7054'
 ]
