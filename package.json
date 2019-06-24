@@ -1,6 +1,6 @@
 {
   "name": "sportsHub",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "baseui": "^7.0.0",
     "css-loader": "^1.0.0",
+    "file-loader": "^4.0.0",
+    "grade-js": "^1.0.10",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "moment": "2.22.2",
@@ -26,12 +28,12 @@
     "react-router": "4.3.1",
     "react-router-dom": "^4.3.1",
     "style-loader": "^0.22.1",
+    "styletron-engine-atomic": "^1.3.0",
+    "styletron-react": "^5.1.2",
     "sweetalert": "^2.1.0",
     "webpack": "^4.0.0",
     "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.11",
-    "wired-elements": "^0.6.1",
-    "styletron-engine-atomic": "^1.3.0",
-    "styletron-react": "^5.1.2"
-  }
+    "wired-elements": "^0.6.1"
+  },
 }
