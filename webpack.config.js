@@ -30,6 +30,16 @@ module.exports = {
       }, {
         test: /\.html$/,
         loader: 'html-loader'
+      }, {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+            },
+          },
+        ],
       }
     ]
   },
