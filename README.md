@@ -1,7 +1,7 @@
-## React Router Deep(打卡 app)
+## SportsHub(打卡 app)
 
 ### Required
-* node v8.9.4 - webpack v4+ 必须
+* node v8.9.4 - webpack v4+ required
 * react v16.4.2
 * react-router v4.3.1
 
@@ -12,7 +12,7 @@
 
 ### TODO
 * 一个腹肌撕裂者的教程和内容，放在独立的面板内，显示计划锻炼内容。
-    * 高抬腿 30s, 斜腹肌 30, 腿间距 30，平躺高抬腿，左右互搏，瓦坎达 forever, 摸脚脖，踩单车，斜腹肌交叉，V 字体型锻炼，平躺屈伸等。
+    * 高抬腿 30s, 斜腹肌 30, 腿间距 30，平躺高抬腿，左右互搏，瓦坎达 forever, 摸脚脖，踩单车，斜腹肌交叉，V 字体型锻炼，平躺屈伸等。名字是瞎取的。
     * - [ ] 左侧悬浮的导航侧边栏，右边一面竖向显示数据，右边一面显示锻炼内容，一面显示月历。
     * - [x] 拆分项目，独立的项目 sportsHub.
     * - [ ] 新的整体 UI style: [baseweb](https://baseweb.design/components/select/) 不好用，只借鉴，不引入。
