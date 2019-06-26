@@ -12,8 +12,16 @@
   border: 1px solid hsla(0, 0%, 0%, 0.12);
 }
 
+.card-container .base-card .card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
 .card-container .base-card .card-header-img {
-  width: 100%;
+  width: 80%;
+  height: 160px;
   object-fit: contain;
 }
 

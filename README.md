@@ -1,4 +1,4 @@
-## SportsHub(打卡 app)
+## SportsHub(腹肌撕裂打卡 app)
 
 ### Required
 * node v8.9.4 - webpack v4+ required
