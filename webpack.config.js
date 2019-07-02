@@ -61,6 +61,8 @@ module.exports = {
   // 意味着原本会进入 /home 目录下查找，但在设置后路径会执行 index.html
   devServer: {
     historyApiFallback: true,
+    disableHostCheck: true, // 不校验主机名，防止报错，修复无法刷新的问题
+    contentBase: path.resolve(__dirname, 'dist') // 监听 8080 dist 目录
   },
   devtool: "source-map",
   plugins: [
