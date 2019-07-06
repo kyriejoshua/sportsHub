@@ -200,7 +200,7 @@ export default class Home extends PureComponent  {
 
     return (
       <wired-card class={`wired-card ${cardInfoClass}`} onClick={this.handleCard}>
-        <h3>{this.state.events[CURRENTYEAR] ? CURRENTYEAR : LASTYEAR} 打卡统计面板:</h3>
+        <h2>{this.state.events[CURRENTYEAR] ? CURRENTYEAR : LASTYEAR} 打卡统计面板:</h2>
         <h4>您目前已打卡{redText(len)}次。</h4>
         <h4>其中，最长连续打卡{redText(lasting)}次。</h4>
         {monthly.map((item) => {
