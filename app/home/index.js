@@ -88,10 +88,10 @@ export default class Home extends PureComponent  {
     events[CURRENTYEAR] = newCurrentEvents.concat([newEvents])
 
     this.setState({ events }, () => {
-      window.localStorage.setItem('sports', JSON.stringify(events))
+      window.localStorage.setItem('sports', JSON.stringify(events, null, 2))
     })
 
-    return copyToClipboard(newEvents)
+    return copyToClipboard(JSON.stringify(newEvents, null, 2))
   }
 
   /**
