@@ -12,6 +12,7 @@ import { isUnique,
   getRecentlyLasting,
   getExercisedInfo,
   getCurrentEvents,
+  getLastEvent,
   copyToClipboard
 } from '@/util'
 import data from './data'
@@ -67,11 +68,28 @@ export default class Home extends PureComponent  {
     swal(Tip)
   }
 
+  /**
+   * 获取今日数据，顶部展示
+   */
+  getHeaderInfo = () => {
+    const currentEvents = getCurrentEvents(this.state.events)
+    const lastEvent = getLastEvent(currentEvents)
+    const lasting = getLastingMax(currentEvents)
+    const { weight } = lastEvent
+
+    return `您最长连续打卡${lasting}天! 您当前体重是 ${weight}`
+  }
+
   addEvent = () => {
     this.setState({ showCard: true })
   }
 
-  pushEvent = (title = 'Sports') => {
+  /**
+   * 保存运动事件
+   * @param {String} title
+   * @param {String} weight
+   */
+  pushEvent = ({ title = 'Sports', weight = '当前体重未记录' }) => {
     const { events } = this.state
     const currentEvents = getCurrentEvents(events, 'new')
     const len = currentEvents.length
@@ -103,7 +121,7 @@ export default class Home extends PureComponent  {
     // 必须深拷贝，否则无法更新
     const newEvents = JSON.parse((JSON.stringify(events)))
     const currentEvents = getCurrentEvents(newEvents, 'new')
-    const lastEvent = currentEvents[currentEvents.length - 1]
+    const lastEvent = getLastEvent(currentEvents)
 
     if (lastEvent && isSameDate(getToday(), lastEvent.start)) {
       currentEvents.pop()
@@ -159,19 +177,23 @@ export default class Home extends PureComponent  {
 
   handleSubmit = (e) => {
     if (e.keyCode === 13 && e.shiftKey) {
-      const title = e.target.value ? `Sports: ${e.target.value}` : ''
-      const tips = this.pushEvent(title) ? { text: CONSTANTS.COPIED_SUCCESS } : {}
+      const textValue = e.target.value || '';
+      const [sportsValue = '', weightNumber] = textValue.split('\n') || [];
+      const title = sportsValue ? `Sports: ${sportsValue}` : ''
+      const weight = weightNumber ? `${weightNumber} 斤` : weightNumber;
+      const tips = this.pushEvent({ title, weight }) ? { text: CONSTANTS.COPIED_SUCCESS } : {}
+
       this.closeCard()
       swal(Object.assign(SWAL_PUNCH_SUCCESS, tips))
     }
   }
 
   renderTip() {
-    const currentEvents = getCurrentEvents(this.state.events)
-    const lasting = getLastingMax(currentEvents)
+    const text = this.getHeaderInfo()
+
     return (
       <wired-listbox class='wired-tip'>
-        <wired-item value='one' text={`您最长连续打卡${lasting}天!`}></wired-item>
+        <wired-item value='one' text={text}></wired-item>
       </wired-listbox>
     )
   }

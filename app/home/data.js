@@ -865,6 +865,7 @@ export default {
   2020: [{
     "id": 0,
     "title": "Sports: 205",
+    "weight": "132 斤",
     "allDay": false,
     "start": "2020-06-09 22:35",
     "end": "2020-06-09 22:35"
