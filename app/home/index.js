@@ -42,6 +42,7 @@ const SWAL_PUNCH_INFO = {
 
 const CURRENTYEAR = new Date().getFullYear()
 const LASTYEAR = CURRENTYEAR - 1
+const ENTER_KEYCODE = 13
 
 export default class Home extends PureComponent  {
   constructor(props) {
@@ -60,7 +61,8 @@ export default class Home extends PureComponent  {
     let Tip
     if (isRecentlyExercised(currentEvents)) {
       const lasting = getRecentlyLasting(currentEvents)
-      Object.assign(SWAL_PUNCH_INFO, { title: `您当前连续打卡 ${lasting} 天！继续努力！`})
+      const title = `您当前连续打卡 ${lasting} 天！继续努力！`
+      Object.assign(SWAL_PUNCH_INFO, { title })
       Tip = SWAL_PUNCH_INFO
     } else {
       Tip = SWAL_PUNCH_WARNING
@@ -89,7 +91,7 @@ export default class Home extends PureComponent  {
    * @param {String} title
    * @param {String} weight
    */
-  pushEvent = ({ title = 'Sports', weight = '当前体重未记录' }) => {
+  pushEvent = ({ title = 'Sports', weight = '未记录' }) => {
     const { events } = this.state
     const currentEvents = getCurrentEvents(events, 'new')
     const len = currentEvents.length
@@ -176,7 +178,7 @@ export default class Home extends PureComponent  {
   }
 
   handleSubmit = (e) => {
-    if (e.keyCode === 13 && e.shiftKey) {
+    if (e.keyCode === ENTER_KEYCODE && e.shiftKey) {
       const textValue = e.target.value || '';
       const [sportsValue = '', weightNumber] = textValue.split('\n') || [];
       const title = sportsValue ? `Sports: ${sportsValue}` : ''

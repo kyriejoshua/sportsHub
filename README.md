@@ -8,7 +8,8 @@
 ### Something
 * 本意是作为 react-router 库的解读，后来顺带做了一个简易的打卡的 app 并独立了出来, 以日历方式呈现。基于 react-big-calendar, 数据保存在本地。
 * UI 库使用了 [wiredelements](https://github.com/wiredjs/wired-elements) 和 [sweetalert](https://sweetalert.js.org/docs/).
-* 支持打卡，编辑内容。`shift + enter` 提交。
+* 支持打卡，编辑内容。第一行记录运动量，第二行记录体重。
+* 同时按下 `shift + enter` 提交。
 
 ### TODO
 * 一个腹肌撕裂者的教程和内容，放在独立的面板内，显示计划锻炼内容。
@@ -16,7 +17,7 @@
     * - [ ] 左侧悬浮的导航侧边栏，右边一面竖向显示数据，右边一面显示锻炼内容，一面显示月历。
     * - [x] 拆分项目，独立的项目 sportsHub.
     * - [ ] 新的整体 UI style: [baseweb](https://baseweb.design/components/select/) 不好用，只借鉴，不引入。
-* 由于无法同时监听 cmd + enter, 所以目前用 shift + enter 替代。
+* ~~由于无法同时监听 cmd + enter~~, 用 shift + enter 监听因为毕竟方便，有现成事件。
 * 缺少直接写入文件的支持。用 node 实现。
 
 ### Usage
