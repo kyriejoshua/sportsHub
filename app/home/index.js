@@ -3,18 +3,7 @@ import { WiredButton, WiredListbox, WiredIconButton, WiredCard } from 'wired-ele
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 import swal from 'sweetalert'
-import { isUnique,
-  isSameDate,
-  getToday,
-  getFormattedDate,
-  isRecentlyExercised,
-  getLastingMax,
-  getRecentlyLasting,
-  getExercisedInfo,
-  getCurrentEvents,
-  getLastEvent,
-  copyToClipboard
-} from '@/util'
+import * as util from '@/util'
 import data from './data'
 import * as CONSTANTS from './constants'
 
@@ -57,10 +46,10 @@ export default class Home extends PureComponent  {
 
   componentDidMount() {
     const { events } = this.state
-    const currentEvents = getCurrentEvents(events)
+    const currentEvents = util.getCurrentEvents(events)
     let Tip
-    if (isRecentlyExercised(currentEvents)) {
-      const lasting = getRecentlyLasting(currentEvents)
+    if (util.isRecentlyExercised(currentEvents)) {
+      const lasting = util.getRecentlyLasting(currentEvents)
       const title = `您当前连续打卡 ${lasting} 天！继续努力！`
       Object.assign(SWAL_PUNCH_INFO, { title })
       Tip = SWAL_PUNCH_INFO
@@ -74,9 +63,9 @@ export default class Home extends PureComponent  {
    * 获取今日数据，顶部展示
    */
   getHeaderInfo = () => {
-    const currentEvents = getCurrentEvents(this.state.events)
-    const lastEvent = getLastEvent(currentEvents)
-    const lasting = getLastingMax(currentEvents)
+    const currentEvents = util.getCurrentEvents(this.state.events)
+    const lastEvent = util.getLastEvent(currentEvents)
+    const lasting = util.getLastingMax(currentEvents)
     const { weight } = lastEvent
 
     return `您最长连续打卡${lasting}天! 您当前体重是 ${weight}`
@@ -93,25 +82,25 @@ export default class Home extends PureComponent  {
    */
   pushEvent = ({ title = 'Sports', weight = '未记录' }) => {
     const { events } = this.state
-    const currentEvents = getCurrentEvents(events, 'new')
+    const currentEvents = util.getCurrentEvents(events, 'new')
     const len = currentEvents.length
     const newCurrentEvents = currentEvents.slice(0)
     const newEvents = {
       id: len,
       title,
       allDay: false,
-      start: getFormattedDate(),
-      end: getFormattedDate()
+      start: util.getFormattedDate(),
+      end: util.getFormattedDate()
     }
 
-    if (!isUnique(newEvents, currentEvents)) { return }
+    if (!util.isUnique(newEvents, currentEvents)) { return }
     events[CURRENTYEAR] = newCurrentEvents.concat([newEvents])
 
     this.setState({ events }, () => {
       window.localStorage.setItem('sports', JSON.stringify(events, null, 2))
     })
 
-    return copyToClipboard(JSON.stringify(newEvents, null, 2))
+    return util.copyToClipboard(JSON.stringify(newEvents, null, 2))
   }
 
   /**
@@ -122,10 +111,10 @@ export default class Home extends PureComponent  {
     const { events = {} } = this.state
     // 必须深拷贝，否则无法更新
     const newEvents = JSON.parse((JSON.stringify(events)))
-    const currentEvents = getCurrentEvents(newEvents, 'new')
-    const lastEvent = getLastEvent(currentEvents)
+    const currentEvents = util.getCurrentEvents(newEvents, 'new')
+    const lastEvent = util.getLastEvent(currentEvents)
 
-    if (lastEvent && isSameDate(getToday(), lastEvent.start)) {
+    if (lastEvent && util.isSameDate(util.getToday(), lastEvent.start)) {
       currentEvents.pop()
       newEvents[CURRENTYEAR] = currentEvents
     }
@@ -215,10 +204,10 @@ export default class Home extends PureComponent  {
 
   renderInfo() {
     const cardInfoClass = this.state.showInfo ? 'show': 'hidden'
-    const currentEvents = getCurrentEvents(this.state.events)
+    const currentEvents = util.getCurrentEvents(this.state.events)
     const len = Array.isArray(currentEvents) ? currentEvents.length : 0
-    const lasting = getLastingMax(currentEvents)
-    const info = getExercisedInfo(currentEvents)
+    const lasting = util.getLastingMax(currentEvents)
+    const info = util.getExercisedInfo(currentEvents)
     const UNEXISTED_STRING = '不存在的'
     const { monthly = [], times = {} } = info
 
@@ -263,7 +252,7 @@ export default class Home extends PureComponent  {
 
   renderCalendar() {
     const { events } = this.state
-    const currentEvents = getCurrentEvents(events)
+    const currentEvents = util.getCurrentEvents(events)
 
     return <BigCalendar
           events={currentEvents}
