@@ -88,6 +88,7 @@ export default class Home extends PureComponent  {
     const newEvents = {
       id: len,
       title,
+      weight,
       allDay: false,
       start: util.getFormattedDate(),
       end: util.getFormattedDate()
