@@ -177,6 +177,15 @@ export function getCurrentEvents(events, type) {
   return type === 'new' ? (events[CURRENTYEAR] || []) : (events[CURRENTYEAR] || events[LASTYEAR])
 }
 
+/**
+ * 获取最近一次具体的锻炼数据
+ * @param {*} currentEvents
+ * @param {*} type
+ */
+export function getLastEvent(currentEvents = []) {
+  return currentEvents[currentEvents.length - 1]
+}
+
 export function copyToClipboard(str = '') {
   if (!str) { return }
   if (typeof str !== 'string') {
