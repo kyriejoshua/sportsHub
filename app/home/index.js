@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, memo } from 'react'
 import { WiredButton, WiredListbox, WiredIconButton, WiredCard } from 'wired-elements'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
@@ -33,6 +33,8 @@ const CURRENTYEAR = new Date().getFullYear()
 const LASTYEAR = CURRENTYEAR - 1
 const ENTER_KEYCODE = 13
 
+const renderRedText = (text) => <span className="info-active"> {text} </span>;
+
 export default class Home extends PureComponent  {
   constructor(props) {
     super(props)
@@ -45,8 +47,7 @@ export default class Home extends PureComponent  {
   }
 
   componentDidMount() {
-    const { events } = this.state
-    const currentEvents = util.getCurrentEvents(events)
+    const currentEvents = this.getCurrentEventsFromStates()
     let Tip
     if (util.isRecentlyExercised(currentEvents)) {
       const lasting = util.getRecentlyLasting(currentEvents)
@@ -63,12 +64,20 @@ export default class Home extends PureComponent  {
    * 获取今日数据，顶部展示
    */
   getHeaderInfo = () => {
-    const currentEvents = util.getCurrentEvents(this.state.events)
+    const currentEvents = this.getCurrentEventsFromStates()
     const lastEvent = util.getLastEvent(currentEvents)
     const lasting = util.getLastingMax(currentEvents)
     const { weight } = lastEvent
 
     return `您最长连续打卡${lasting}天! 您当前体重是 ${weight}`
+  }
+
+  /**
+   * 从当前状态中获取当前事件
+   */
+  getCurrentEventsFromStates = (type) => {
+    const { events } = this.state
+    return util.getCurrentEvents(events, type)
   }
 
   addEvent = () => {
@@ -82,7 +91,7 @@ export default class Home extends PureComponent  {
    */
   pushEvent = ({ title = 'Sports', weight = '未记录' }) => {
     const { events } = this.state
-    const currentEvents = util.getCurrentEvents(events, 'new')
+    const currentEvents = this.getCurrentEventsFromStates(events, 'new')
     const len = currentEvents.length
     const newCurrentEvents = currentEvents.slice(0)
     const newEvents = {
@@ -111,8 +120,8 @@ export default class Home extends PureComponent  {
   clearToday = () => {
     const { events = {} } = this.state
     // 必须深拷贝，否则无法更新
-    const newEvents = JSON.parse((JSON.stringify(events)))
-    const currentEvents = util.getCurrentEvents(newEvents, 'new')
+    const newEvents = util.simpleDeepCopy(events)
+    const currentEvents = this.getCurrentEventsFromStates(newEvents, 'new')
     const lastEvent = util.getLastEvent(currentEvents)
 
     if (lastEvent && util.isSameDate(util.getToday(), lastEvent.start)) {
@@ -205,8 +214,8 @@ export default class Home extends PureComponent  {
 
   renderInfo() {
     const cardInfoClass = this.state.showInfo ? 'show': 'hidden'
-    const currentEvents = util.getCurrentEvents(this.state.events)
-    const len = Array.isArray(currentEvents) ? currentEvents.length : 0
+    const currentEvents = this.getCurrentEventsFromStates()
+    const len = (currentEvents || []).length;
     const lasting = util.getLastingMax(currentEvents)
     const info = util.getExercisedInfo(currentEvents)
     const UNEXISTED_STRING = '不存在的'
@@ -215,12 +224,12 @@ export default class Home extends PureComponent  {
     return (
       <wired-card class={`wired-card ${cardInfoClass}`} onClick={this.handleCard}>
         <h2>{this.state.events[CURRENTYEAR] ? CURRENTYEAR : LASTYEAR} 打卡统计面板:</h2>
-        <h4>您目前已打卡{redText(len)}次。</h4>
-        <h4>其中，最长连续打卡{redText(lasting)}次。</h4>
+        <h4>您目前已打卡{renderRedText(len)}次。</h4>
+        <h4>其中，最长连续打卡{renderRedText(lasting)}次。</h4>
         {monthly.map((item) => {
-          return (<h4 key={item.key}>其中，{redText(item.month)}月打卡{redText(item.times)}次。</h4>)
+          return (<h4 key={item.key}>其中，{renderRedText(item.month)}月打卡{renderRedText(item.times)}次。</h4>)
         })}
-        <h4>其中，最多的一天是{redText(times.maxDay || UNEXISTED_STRING)}, 做了{redText(times.max || UNEXISTED_STRING)}次。</h4>
+        <h4>其中，最多的一天是{renderRedText(times.maxDay || UNEXISTED_STRING)}, 做了{renderRedText(times.max || UNEXISTED_STRING)}次。</h4>
       </wired-card>
     )
   }
@@ -252,8 +261,7 @@ export default class Home extends PureComponent  {
   }
 
   renderCalendar() {
-    const { events } = this.state
-    const currentEvents = util.getCurrentEvents(events)
+    const currentEvents = this.getCurrentEventsFromStates()
 
     return <BigCalendar
           events={currentEvents}
@@ -276,7 +284,3 @@ export default class Home extends PureComponent  {
     )
   }
 }
-
-const redText = (text) => (
-  <span className="info-active"> {text} </span>
-)

@@ -186,6 +186,10 @@ export function getLastEvent(currentEvents = []) {
   return currentEvents[currentEvents.length - 1]
 }
 
+/**
+ * 复制
+ * @param {String} str
+ */
 export function copyToClipboard(str = '') {
   if (!str) { return }
   if (typeof str !== 'string') {
@@ -194,11 +198,14 @@ export function copyToClipboard(str = '') {
   return createInput(str)
 }
 
+/**
+ * 容错处理的复制
+ */
 export function copyEvent() {
   try {
     document.execCommand('copy')
   } catch (error) {
-    console.error('复制失败: ', error)
+    console.error('复制失败，错误信息: ', error)
     return false
   }
   return true
@@ -212,4 +219,15 @@ export function createInput(str = '') {
   const isCopied = copyEvent()
   document.body.removeChild(input);
   return isCopied
+}
+
+/**
+ * 简易版深拷贝
+ * @param {Object} params
+ */
+export function simpleDeepCopy(params = {}) {
+  if (typeof params !== 'object') {
+    throw Error('params must be object type!')
+  }
+  return JSON.parse(JSON.stringify(params))
 }
