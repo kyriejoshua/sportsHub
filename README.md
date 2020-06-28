@@ -1,8 +1,8 @@
 ## SportsHub(腹肌撕裂打卡 app)
 
 ### Required
-* node v8.9.4 - webpack v4+ required
-* react v16.4.2
+* node v12.16.2 - webpack v4+ required
+* react v16.8.6
 * react-router v4.3.1
 
 ### Something
@@ -18,7 +18,7 @@
     * - [x] 拆分项目，独立的项目 sportsHub.
     * - [ ] 新的整体 UI style: [baseweb](https://baseweb.design/components/select/) 不好用，只借鉴，不引入。
 * ~~由于无法同时监听 cmd + enter~~, 用 shift + enter 监听因为毕竟方便，有现成事件。
-* 缺少直接写入文件的支持。用 node 实现。
+* 缺少直接写入文件的支持。用 node 实现。可以使用 indexDB 来替代。
 
 ### Usage
 * Run `npm start`
