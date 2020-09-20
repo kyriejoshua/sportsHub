@@ -1,3 +1,5 @@
+![](https://img.shields.io/github/commit-activity/y/kyriejoshua/sportsHub?style=for-the-badge)
+
 ## SportsHub(腹肌撕裂打卡 app)
 
 ### Required
